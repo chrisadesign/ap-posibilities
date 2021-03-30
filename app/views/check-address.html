@@ -10,12 +10,10 @@
   <div class="govuk-grid-row">
 
     <div class="govuk-grid-column-one-half govuk-!-padding-right-9">
-      <h1 class="govuk-heading-m">
+      <h1 class="govuk-heading-m govuk-!-margin-bottom-1">
         Check the documents are correct
       </h1>
-      <p class="govuk-body-m"><a href="#0" class="govuk-link--no-visited-state">Open all documents</a> and answer the following questions.</p>
-
-      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      <p class="govuk-!-margin-bottom-6"><a href="#0" class="govuk-link--no-visited-state">Open all documents</a> and answer the following questions.</p>
 
       {{ govukRadios({
         idPrefix: 'address-match',
@@ -56,13 +54,16 @@
         },
         hint: {
           html: '
-          <dl class="govuk-summary-list govuk-summary-list--no-border govuk-!-width-two-thirds">
+          <dl class="govuk-summary-list govuk-summary-list--no-border govuk-!-width-two-thirds govuk-!-margin-bottom-0">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key govuk-!-padding-bottom-0">
                 Names
               </dt>
               <dd class="govuk-summary-list__value govuk-!-padding-bottom-0">
-                Jim Armstrong
+                <ul class="govuk-list">
+                  <li>Jim Armstrong</li>
+                  <li>Willow Armstrong</li>
+                </ul>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
