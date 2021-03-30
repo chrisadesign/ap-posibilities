@@ -1,0 +1,172 @@
+// Override the govuk-frontend font stack
+// $govuk-font-family: "Arial", sans-serif;
+
+// Change max width
+// $govuk-page-width: 1200px;
+
+// Variables
+$hmlr-brand-colour: #87C426;
+$page-background-colour: #f3f2f1;
+$status-not-started: #b1b4b6;
+$status-in-progress: #f47738;
+$status-complete: #85994b;
+
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+
+// We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
+$govuk-assets-path: '/govuk/assets/';
+
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+@import "lib/extensions/extensions";
+
+// Patterns that aren't in Frontend
+@import "patterns/step-by-step-header";
+@import "patterns/step-by-step-nav";
+@import "patterns/step-by-step-related";
+@import "patterns/task-list";
+@import "patterns/related-items";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+
+
+
+// Create a class for a wider container
+.app-width-wide .govuk-width-container {
+  @include govuk-width-container(1400px);
+}
+
+
+
+
+
+
+// Adjust header for HMLR
+.govuk-header {
+  border-bottom: 10px solid $hmlr-brand-colour;
+}
+  .govuk-header__container {
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+  .govuk-header__logo {
+    width: 100%;
+  }
+
+
+
+// Darken background colour for regular usage/caseworkers
+.govuk-template__body {
+  background-color: $page-background-colour;
+}
+
+// Fix background of radios/checkboxes
+.govuk-radios__label::before,
+.govuk-checkboxes__label::before {
+  background: white;
+}
+
+// Bump up footer border now that background colour for the page is the same
+.govuk-footer {
+  border-top-width: 10px;
+}
+
+
+
+
+
+// Override colours
+.app-\!-colour-black {
+  color: govuk-colour("black");
+}
+
+
+
+// Top border for headers to draw attention to areas
+.app-border-top-big {
+  border-top: 5px solid darken($hmlr-brand-colour, 20%);
+  padding-top: 15px;
+}
+
+
+
+
+// Status circle indicators
+.app-status::before {
+  content: '';
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  border-radius: .5rem;
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.3rem;
+  background: $status-not-started;
+}
+
+  .app-status--in-progress::before {
+    background: $status-in-progress;
+  }
+  .app-status--complete::before {
+    background: $status-complete;
+  }
+
+
+
+
+// Some tweaks for the MOJ title bar
+.moj-identity-bar {
+  background: govuk-colour("light-grey");
+
+}
+  .moj-identity-bar__title {
+    dt,
+    dd {
+      // @include govuk-font(19);
+      float: left;
+      margin-right: 5px;
+
+      @media(max-width: 670px) {
+        float: none;
+        margin: 0;
+      }
+    }
+
+    dt {
+      font-weight: bold;
+    }
+
+    dd {
+      border-right: 1px solid $govuk-border-colour;
+      margin: 0 10px 0 0;
+      padding: 0 10px 0 0;
+
+      &:last-of-type {
+        border: 0;
+        margin: 0;
+        padding: 0;
+      }
+
+      @media(max-width: 670px) {
+        margin-bottom: 10px;
+        border: 0;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+
+
+
+.register-list {
+  padding: 0px 10px 20px 35px;
+
+  * {
+    list-style-position: outside;
+    font-family: Courier,monospace;
+  }
+}

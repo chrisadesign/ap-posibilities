@@ -1,0 +1,142 @@
+{% extends "layout.html" %}
+{# {%- set htmlClasses = 'app-width-wide' -%} #}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-xl">
+        Your applications
+      </h1>
+
+
+
+      <div class='govuk-grid-row'>
+        <div class="govuk-grid-column-two-thirds">
+          <h2 class="govuk-heading-m govuk-!-margin-top-4">
+            Start processing a new application
+          </h2>
+          <p class="govuk-body">Pull the next application ready to be processed from the backlog.</p>
+          {{ govukButton ({
+            text: 'Get an application',
+            href: '#0',
+            classes: 'govuk-!-margin-bottom-9'
+          }) }}
+        </div>
+
+        <div class="govuk-grid-column-one-third">
+          <h2 class="govuk-heading-m app-border-top-big">
+            Remove an application
+          </h2>
+
+          {%- from "moj/components/search/macro.njk" import mojSearch -%}
+          {{ mojSearch({
+            action: '#0',
+            method: 'post',
+            input: {
+              id: 'search',
+              name: 'search'
+            },
+            hint: {
+              text: 'Reference (ABR)',
+              classes: 'app-!-colour-black'
+            },
+            button: {
+              text: 'Find'
+            }
+          }) }}
+        </div>
+      </div>
+
+
+
+      <h2 class="govuk-heading-m app-border-top-big govuk-!-margin-top-4">
+        In progress
+      </h2>
+
+      {{ govukTable({
+        firstCellIsHeader: false,
+        head: [
+          {
+            text: 'Reference',
+            attributes: {
+              'aria-sort': 'descending'
+            }
+          },
+          {
+            text: 'Title number',
+            attributes: {
+              'aria-sort': 'none'
+            }
+          },
+          {
+            text: 'Category',
+            attributes: {
+              'aria-sort': 'none'
+            }
+          },
+          {
+            text: 'Priority date',
+            attributes: {
+              'aria-sort': 'none'
+            }
+          },
+          {
+            text: 'Status',
+            attributes: {
+              'aria-sort': 'none'
+            }
+          },
+          {
+            html: '<span class="govuk-visually-hidden">Action</span>'
+          }
+        ],
+        rows: [
+          [
+            {
+              text: 'A123BCD'
+            },
+            {
+              text: 'BGL109001'
+            },
+            {
+              text: 'Transfer'
+            },
+            {
+              text: today | date("add", 1, "days") | date("D MMMM YYYY")
+            },
+            {
+              html: '<span class="app-status app-status--in-progress">In progress</span>'
+            },
+            {
+              html: '<a href="#0" class="govuk-link--no-visited-state">Process application</a>'
+            }
+          ],
+          [
+            {
+              html: 'A456BCD'
+            },
+            {
+              html: 'BGL109002'
+            },
+            {
+              text: 'Transfer'
+            },
+            {
+              text: today | date("add", 19, "days") | date("D MMMM YYYY")
+            },
+            {
+              html: '<span class="app-status">Not started</span>'
+            },
+            {
+              html: '<a href="check-address" class="govuk-link--no-visited-state">Process application</a>'
+            }
+          ]
+        ]
+      }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}
